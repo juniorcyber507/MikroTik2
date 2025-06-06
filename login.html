@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CyberCafé Wi-Fi</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body class="bg-gradient-to-r from-blue-100 to-indigo-200 min-h-screen flex flex-col items-center px-4">
+
+  <main class="bg-white shadow-2xl rounded-2xl p-6 sm:p-8 max-w-md w-full text-center flex-grow mt-8">
+    <div class="mb-4 p-4 rounded-xl bg-indigo-100 border border-indigo-300 shadow-inner">
+      <h1 class="text-3xl font-bold text-indigo-700">FACLE WIFI ZONE</h1>
+    </div>
+
+    <h1 class="text-2xl sm:text-3xl font-bold text-indigo-700 mb-2">Bienvenue a vous</h1>
+    <p class="text-gray-600 mb-6 text-sm sm:text-base">Connectez-vous pour accéder à Internet</p>
+
+    <!-- Section tarifs -->
+    <div class="mb-6 text-left text-xs sm:text-sm">
+      <h2 class="text-lg sm:text-xl font-bold text-indigo-700 mb-4">Tarifs</h2>
+      <table class="w-full border border-gray-300 rounded-xl bg-indigo-50 text-xs sm:text-sm">
+        <thead>
+          <tr class="bg-indigo-100">
+            <th class="border border-gray-300 px-2 sm:px-4 py-2 text-left">Durée</th>
+            <th class="border border-gray-300 px-2 sm:px-4 py-2 text-left">Prix</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="even:bg-white odd:bg-indigo-50">
+            <td class="border border-gray-300 px-2 sm:px-4 py-2">30 minutes</td>
+            <td class="border border-gray-300 px-2 sm:px-4 py-2 font-semibold">1 000 CFA</td>
+          </tr>
+          <tr class="bg-transparent">
+            <td class="border border-gray-300 px-2 sm:px-4 py-2">1 heure</td>
+            <td class="border border-gray-300 px-2 sm:px-4 py-2 font-semibold">2 000 CFA</td>
+          </tr>
+          <tr class="even:bg-white odd:bg-indigo-50">
+            <td class="border border-gray-300 px-2 sm:px-4 py-2">3 heures</td>
+            <td class="border border-gray-300 px-2 sm:px-4 py-2 font-semibold">4 500 CFA</td>
+          </tr>
+          <tr class="bg-transparent">
+            <td class="border border-gray-300 px-2 sm:px-4 py-2">Journée entière</td>
+            <td class="border border-gray-300 px-2 sm:px-4 py-2 font-semibold">10 000 CFA</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <form id="loginForm" method="POST" class="space-y-4 text-left">
+      <div class="flex items-center border border-gray-400 rounded-xl px-3 py-2 bg-gray-50 focus-within:ring-2 focus-within:ring-indigo-400">
+        <i class="ph ph-user text-gray-500 mr-3"></i>
+        <input type="text" name="username" placeholder="Nom d'utilisateur" class="w-full outline-none bg-transparent text-sm sm:text-base" required>
+      </div>
+
+      <div class="flex items-center border border-gray-400 rounded-xl px-3 py-2 bg-gray-50 focus-within:ring-2 focus-within:ring-indigo-400 relative">
+        <i class="ph ph-lock text-gray-500 mr-3"></i>
+        <input id="password" type="password" name="password" placeholder="Mot de passe" class="w-full outline-none pr-8 bg-transparent text-sm sm:text-base" required>
+        <button type="button" onclick="togglePassword()" class="absolute right-3 text-gray-500 focus:outline-none">
+          <i id="eyeIcon" class="ph ph-eye"></i>
+        </button>
+      </div>
+
+      <button type="submit"
+              class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-xl transition text-sm sm:text-base">
+        Se connecter
+      </button>
+    </form>
+
+    <div class="mt-6 text-xs sm:text-sm text-gray-500">
+      Besoin d'aide ? Demandez au personnel.
+    </div>
+  </main>
+
+  <footer class="w-full max-w-md mt-8 bg-indigo-700 text-white rounded-2xl px-6 py-6 mx-auto text-sm sm:text-base">
+    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-6">
+      <div>
+        <h3 class="font-bold mb-2 text-lg">Contact</h3>
+        <p class="flex items-center gap-2">
+          <i class="ph ph-envelope"></i> cybercodex225@gmail.com
+          <a href="https://wa.me/22890099936" target="_blank" class="ml-3">
+            <i class="ph ph-whatsapp-logo text-xl text-green-400"></i>
+          </a>
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-6 border-t border-indigo-500 pt-4 text-center text-indigo-300 select-none">
+      Copyright © 2025 — Junior CybCod
+    </div>
+  </footer>
+
+  <script>
+    // Sur soumission : enregistrer connexion puis rediriger vers Google
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault();  // empêche le submit standard
+      localStorage.setItem('wifi_connected', 'true');
+      window.location.href = "https://www.google.com";
+    });
+
+    function togglePassword() {
+      const passwordInput = document.getElementById("password");
+      const eyeIcon = document.getElementById("eyeIcon");
+      const isHidden = passwordInput.type === "password";
+
+      passwordInput.type = isHidden ? "text" : "password";
+      eyeIcon.className = isHidden ? "ph ph-eye-slash" : "ph ph-eye";
+    }
+  </script>
+
+</body>
+</html>
